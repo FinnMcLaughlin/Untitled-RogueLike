@@ -8,16 +8,19 @@ public class Character2DController : MonoBehaviour {
 	private Rigidbody2D rb;
 	private Vector2 movementVelocity;
 
+	// Initialize Player's rigidbody
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();	
 	}
 
 	void Update(){
+		// Get input from player and create the player movement velocity based on direction and speed
 		Vector2 movementInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 		movementVelocity = movementInput.normalized * movementSpeed;
 	}
 
 	void FixedUpdate(){
+		// Move player based on the players position, the velocity
 		rb.MovePosition (rb.position + movementVelocity * Time.fixedDeltaTime);
 	}
 

@@ -6,18 +6,16 @@ public class enemyMeleeAttack : MonoBehaviour {
 
 	public float enemyAttack_CooldownTime;
 	private float coolDownTimer;
-	private int hits;
 
-	// Use this for initialization
 	void Start () {
-		hits = 0;
+
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		checkCooldownTimer ();
+		//checkCooldownTimer ();
 	}
 
+	// Basic cool down timer
 	void checkCooldownTimer(){
 		if (coolDownTimer > 0) {
 			coolDownTimer -= Time.deltaTime;
@@ -26,12 +24,13 @@ public class enemyMeleeAttack : MonoBehaviour {
 		}
 	}
 
-	// BUG: When player + mouse are not moving, this trigger doesnt get called
+
 	void OnTriggerStay2D(Collider2D other){
+		// Does damage to player in intervals if the attack point is colliding
+		// with the player
+		// !!! BUG: When player + mouse are not moving, this trigger doesnt get called !!!
 		if (other.CompareTag ("Player") && coolDownTimer == 0) {
-			hits++;
-			print ("Player hit; " + hits); 
-			coolDownTimer = enemyAttack_CooldownTime;
+			//coolDownTimer = enemyAttack_CooldownTime;
 		}
 	}
 }

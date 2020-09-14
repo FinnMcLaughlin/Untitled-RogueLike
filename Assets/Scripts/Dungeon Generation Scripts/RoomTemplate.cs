@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class to contain all different room objects to be
+// accessed for dungeon generation
 public class RoomTemplate : MonoBehaviour {
 
 	public GameObject[] upRooms;
@@ -17,6 +19,7 @@ public class RoomTemplate : MonoBehaviour {
 	public GameObject boss;
 	public bool bossSpawned = false;
 
+	// When ready, place boss icon in the last generated room
 	void Update(){
 		if(!bossSpawned){
 			if (waitTime <= 0) {

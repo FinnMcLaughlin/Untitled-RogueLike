@@ -6,6 +6,7 @@ public class AddRoom : MonoBehaviour {
 
 	private RoomTemplate templates;
 
+	// Adds room to Room Template rooms list
 	void Start(){
 		templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<RoomTemplate> ();
 		templates.rooms.Add (this.gameObject);

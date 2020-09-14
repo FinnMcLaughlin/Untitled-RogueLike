@@ -11,25 +11,25 @@ public class enemyRangeAttack : MonoBehaviour {
 	public float rangeDistance;
 	private Transform target;
 
-
-	// Use this for initialization
+	// Get Player position and initalize cool down timer
 	void Start () {
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
 		coolDownTimer = 0;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 		checkCooldownTimer ();
-		//&& Vector2.Distance(transform.position, target.transform.position) < 5
+
+		// Fire bullet towards Player if cool down timer allows it and if the distance between player and enemy is
+		// within range. Reset the cooldown timer after firing bullet
 		if (coolDownTimer == 0 && Vector2.Distance(transform.position, target.transform.position) <= rangeDistance) {
 			Instantiate (bulletToFire, firePoint.position, transform.rotation);
 			coolDownTimer = fireRate;
 		}
 	}
 
-
+	//Basic cool down timer
 	void checkCooldownTimer(){
 		if (coolDownTimer > 0) {
 			coolDownTimer -= Time.deltaTime;

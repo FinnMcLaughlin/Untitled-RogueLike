@@ -11,15 +11,15 @@ public class crosshairFollow : MonoBehaviour {
 	public float manaValue;
 	private float coolDownTimer;
 
-	// Use this for initialization
 	void Start () {
 		cam = Camera.main;
 		coolDownTimer = 0;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		//Cursor.visible = false;
+
+		// Rotates crosshair around player based on cursor position within the game 
 		Vector3 MousePos = Input.mousePosition;
 
 		Vector3 Screenpoint = cam.WorldToScreenPoint (transform.localPosition);
@@ -32,13 +32,14 @@ public class crosshairFollow : MonoBehaviour {
 
 		checkCooldownTimer ();
 
+		// Fire a bullet if LMB pressed and cooldown timer allows it 
 		if (Input.GetMouseButtonDown (0) && coolDownTimer == 0) {
 			Instantiate (bulletToFire, firePoint.position, transform.rotation);
 			coolDownTimer = manaValue;
 		}
 	}
 
-
+	// Basic cooldown timer
 	void checkCooldownTimer(){
 		if (coolDownTimer > 0) {
 			coolDownTimer -= Time.deltaTime;

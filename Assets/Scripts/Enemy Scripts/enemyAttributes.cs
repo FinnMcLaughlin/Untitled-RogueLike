@@ -6,19 +6,19 @@ public class enemyAttributes : MonoBehaviour {
 
 	public int enemyHealth;
 
-	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
+		// Destroy enemy if health is 0
 		if (enemyHealth <= 0) {
 			Destroy (gameObject);
 		}
 	}
-
+		
 	void OnTriggerEnter2D(Collider2D other){
+		// Decrease enemy health if hit with player attack
 		if(other.CompareTag("playerAttack")){
 			enemyHealth--;
 		}
