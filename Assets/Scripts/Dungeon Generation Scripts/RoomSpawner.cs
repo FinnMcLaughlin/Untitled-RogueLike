@@ -10,18 +10,18 @@ public class RoomSpawner : MonoBehaviour {
 	//3-> Room Spawn point which is to the left of the current room
 	//4-> Room Spawn point which is to the right of the current room
 
-	private RoomTemplate templates;
+	private RoomTemplate room_templates;
+	private EnemySpawnTemplate enemy_templates;
 	private int rand;
 	public bool spawned = false;
 
-	public float waitTime_destroySpawners = 4f;
+	//public float waitTime_destroySpawners = 4f;
 
 	// Destroy the Room Spawn after designated time
 	// Get the rooms list from room template
 	// Spawn the rooms 0.1s
 	void Start(){
-		Destroy (gameObject, waitTime_destroySpawners);
-		templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<RoomTemplate> ();
+		room_templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<RoomTemplate> ();
 		Invoke ("Spawn", 0.1f);
 	}
 
@@ -34,26 +34,26 @@ public class RoomSpawner : MonoBehaviour {
 				switch (openingDirection) {
 				case 1:
 					//spawn room with a door leading down
-					rand = Random.Range (0, templates.downRooms.Length);
-					Instantiate (templates.downRooms [rand], transform.position, Quaternion.identity);
+					rand = Random.Range (0, room_templates.downRooms.Length);
+					Instantiate (room_templates.downRooms [rand], transform.position, Quaternion.identity);
 					spawned = true;
 					break;
 				case 2:
 					//spawn room with a door leading up
-					rand = Random.Range (0, templates.upRooms.Length);
-					Instantiate (templates.upRooms [rand], transform.position, Quaternion.identity);
+					rand = Random.Range (0, room_templates.upRooms.Length);
+					Instantiate (room_templates.upRooms [rand], transform.position, Quaternion.identity);
 					spawned = true;
 					break;
 				case 3:
 					//spawn room with a door leading right
-					rand = Random.Range (0, templates.rightRooms.Length);
-					Instantiate (templates.rightRooms [rand], transform.position, Quaternion.identity);
+					rand = Random.Range (0, room_templates.rightRooms.Length);
+					Instantiate (room_templates.rightRooms [rand], transform.position, Quaternion.identity);
 					spawned = true;
 					break;
 				case 4:
 					//spawn room with a door leading left
-					rand = Random.Range (0, templates.leftRooms.Length);
-					Instantiate (templates.leftRooms [rand], transform.position, Quaternion.identity);
+					rand = Random.Range (0, room_templates.leftRooms.Length);
+					Instantiate (room_templates.leftRooms [rand], transform.position, Quaternion.identity);
 					spawned = true;
 					break;
 				}
@@ -61,7 +61,7 @@ public class RoomSpawner : MonoBehaviour {
 			// If the room spawner is outside of the dungeon bounds, then spawn a "closed room", which has 
 			// only one entrance/exit
 			else {
-				Instantiate (templates.closedRooms [openingDirection - 1], transform.position, Quaternion.identity);
+				Instantiate (room_templates.closedRooms [openingDirection - 1], transform.position, Quaternion.identity);
 				spawned = true;
 			}
 		}
@@ -78,6 +78,17 @@ public class RoomSpawner : MonoBehaviour {
 				Destroy (other.gameObject);
 			}
 			spawned = true;
+		}
+
+		// If the player enters the bounding box of the room, instatiate 
+		// a random enemy spawner layout from RoomTemplate, and destroy the
+		// room spawner object
+		if (other.CompareTag ("Player")) {
+			enemy_templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<EnemySpawnTemplate> ();
+
+			rand = Random.Range (0, enemy_templates.spLayouts.Length);
+			Instantiate (enemy_templates.spLayouts [rand], transform.position, Quaternion.identity);
+			Destroy (gameObject);
 		}
 	}
 }
