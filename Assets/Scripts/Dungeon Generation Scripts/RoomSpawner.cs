@@ -21,7 +21,7 @@ public class RoomSpawner : MonoBehaviour {
 	// Get the rooms list from room template
 	// Spawn the rooms 0.1s
 	void Start(){
-		room_templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<RoomTemplate> ();
+		room_templates = GameObject.FindGameObjectWithTag ("AllRooms").GetComponent<RoomTemplate> ();
 		Invoke ("Spawn", 0.1f);
 	}
 
@@ -78,17 +78,6 @@ public class RoomSpawner : MonoBehaviour {
 				Destroy (other.gameObject);
 			}
 			spawned = true;
-		}
-
-		// If the player enters the bounding box of the room, instatiate 
-		// a random enemy spawner layout from RoomTemplate, and destroy the
-		// room spawner object
-		if (other.CompareTag ("Player")) {
-			enemy_templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<EnemySpawnTemplate> ();
-
-			rand = Random.Range (0, enemy_templates.spLayouts.Length);
-			Instantiate (enemy_templates.spLayouts [rand], transform.position, Quaternion.identity);
-			Destroy (gameObject);
 		}
 	}
 }

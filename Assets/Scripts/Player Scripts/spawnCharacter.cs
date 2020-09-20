@@ -16,7 +16,7 @@ public class spawnCharacter : MonoBehaviour {
 
 	void Update(){
 		if (!playerSpawned) {
-			bossSpawned = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<RoomTemplate> ().bossSpawned;
+			bossSpawned = GameObject.FindGameObjectWithTag ("AllRooms").GetComponent<RoomTemplate> ().bossSpawned;
 
 			if (bossSpawned) {
 				// If the player has not been spawned and the boss has

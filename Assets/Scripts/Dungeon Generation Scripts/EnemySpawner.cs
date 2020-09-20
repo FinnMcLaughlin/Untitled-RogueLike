@@ -6,11 +6,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	private EnemySpawnTemplate templates;
 	private int rand;
-	private bool spawned = false;
+	//private bool spawned = false;
 
 	void Start () {
 		Destroy (gameObject, 4f);
-		templates = GameObject.FindGameObjectWithTag ("Rooms").GetComponent<EnemySpawnTemplate> ();
+		templates = GameObject.FindGameObjectWithTag ("AllRooms").GetComponent<EnemySpawnTemplate> ();
 		Invoke ("Spawn", 0.4f);
 	}
 

@@ -49,11 +49,13 @@
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\AddRoom.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\EnemySpawnTemplate.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Dungeon Generation Scripts\LockRoom.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\RoomSpawner.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\RoomTemplate.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\cameraFollow.cs" />
      <Compile Include="Assets\Scripts\Dungeon Generation Scripts\destroySelf.cs" />
+     <Compile Include="Assets\Scripts\Dungeon Generation Scripts\onPlayerEnter.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\enemyAttributes.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\enemyFollow.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\enemyMeleeAttack.cs" />
