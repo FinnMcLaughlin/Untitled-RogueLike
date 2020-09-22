@@ -33,10 +33,4 @@ public class Character2DController : MonoBehaviour {
 		// Move player based on the players position, the velocity
 		rb.MovePosition (rb.position + movementVelocity * Time.fixedDeltaTime);
 	}
-
-	void OnTriggerEnter2D(Collider2D other){
-		if(other.CompareTag("enemyAttack")){
-			//print("Player Hit Ranged");
-		}
-	}
 }
