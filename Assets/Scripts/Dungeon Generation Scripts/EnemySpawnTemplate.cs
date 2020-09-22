@@ -17,14 +17,4 @@ public class EnemySpawnTemplate : MonoBehaviour {
 	 * public GameObject[] spLayout_Left;
 	 * public GameObject[] spLayout_Right;
 	*/
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

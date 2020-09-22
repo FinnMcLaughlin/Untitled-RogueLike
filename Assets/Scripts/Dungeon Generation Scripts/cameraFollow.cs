@@ -32,10 +32,20 @@ public class cameraFollow : MonoBehaviour {
 		// If the player has not been found (i.e. not spawned) then keep 
 		// looking for the player until it has spawned, and assign it to the game object
 		else {
-			if (GameObject.FindGameObjectWithTag ("Player") != null) {
-				player = GameObject.FindGameObjectWithTag ("Player");
-				playerFound = true;
-			}
+			Invoke ("findPlayer", 1f);
 		}
+	}
+
+	void findPlayer(){
+		if (GameObject.FindGameObjectWithTag ("Player") != null) {
+			print ("Player Found");
+			player = GameObject.FindGameObjectWithTag ("Player");
+			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, -10f);  
+			playerFound = true;
+		}
+	}
+
+	public void resetCamera(){
+		playerFound = false;
 	}
 }

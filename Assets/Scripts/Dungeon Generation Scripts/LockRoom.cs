@@ -19,9 +19,17 @@ public class LockRoom : MonoBehaviour {
 	// killed
 	void Update () {
 		if (roomLocked) {
+			
 			enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 
 			if (enemiesSpawned && enemies.Length < 1) {
+
+				if (GameObject.FindGameObjectWithTag ("BossRoom") != null) {
+					if(isBossRoom() && playerInCurrentRoom()){
+						GameObject.FindGameObjectWithTag ("BossRoom").GetComponent<BossRoom> ().BossKilled ();
+					}
+				}
+
 				Destroy (gameObject);
 			}
 
@@ -34,5 +42,13 @@ public class LockRoom : MonoBehaviour {
 	public void lockRoom(){
 		gameObject.SetActive (true);
 		roomLocked = true;
+	}
+
+	bool isBossRoom(){
+		return GameObject.FindGameObjectWithTag ("BossRoom").GetComponent<onPlayerEnter> ().isBossRoom ();
+	}
+
+	bool playerInCurrentRoom(){
+		return GameObject.FindGameObjectWithTag ("BossRoom").GetComponent<onPlayerEnter> ().isPlayerInCurrentRoom();
 	}
 }

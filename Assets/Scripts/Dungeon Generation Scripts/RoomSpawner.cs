@@ -30,7 +30,6 @@ public class RoomSpawner : MonoBehaviour {
 		// Get the room spawners opening direction in order to decide from which rooms list to choose a random room from
 		if (spawned == false) {
 			if (transform.position.x > -25 && transform.position.x < 25 && transform.position.y > -25 && transform.position.y < 25) {
-				print ("Spawn");
 				switch (openingDirection) {
 				case 1:
 					//spawn room with a door leading down

@@ -23,7 +23,7 @@ public class RoomTemplate : MonoBehaviour {
 	void Update(){
 		if(!bossSpawned){
 			if (waitTime <= 0) {
-				Instantiate (boss, rooms [rooms.Count - 1].transform.position, Quaternion.identity);
+				rooms[(rooms.Count)-1].GetComponent<onPlayerEnter>().makeBossRoom();
 				bossSpawned = true;
 			} 
 			else {

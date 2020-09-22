@@ -7,6 +7,7 @@ public class Character2DController : MonoBehaviour {
 	public float movementSpeed = 1;
 	private Rigidbody2D rb;
 	private Vector2 movementVelocity;
+	private bool loadingPlayer = false;
 
 	// Initialize Player's rigidbody
 	void Start(){
@@ -14,9 +15,18 @@ public class Character2DController : MonoBehaviour {
 	}
 
 	void Update(){
-		// Get input from player and create the player movement velocity based on direction and speed
-		Vector2 movementInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-		movementVelocity = movementInput.normalized * movementSpeed;
+		if (loadingPlayer) {
+			// Get input from player and create the player movement velocity based on direction and speed
+			Vector2 movementInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+			movementVelocity = movementInput.normalized * movementSpeed;
+		}
+		else {
+			Invoke ("LoadedPlayer", 1f);
+		}
+	}
+
+	void LoadedPlayer(){
+		loadingPlayer = true;
 	}
 
 	void FixedUpdate(){

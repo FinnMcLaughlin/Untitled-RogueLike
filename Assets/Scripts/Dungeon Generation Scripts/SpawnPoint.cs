@@ -9,8 +9,22 @@ public class SpawnPoint : MonoBehaviour {
 
 	// Instantiate the main camera in the middle of the first room
 	void Start(){
-		Instantiate (camera, new Vector3(transform.position.x, transform.position.y, -10f), Quaternion.identity);
+		if (GameObject.FindGameObjectWithTag ("MainCamera") == null) {
+			Instantiate (camera, new Vector3(transform.position.x, transform.position.y, -10f), Quaternion.identity);
+			enableCamera ();
+		}
+		else {
+			disableCamera ();
+			Invoke ("enableCamera", 1f);
+		}
+	}
+
+	void enableCamera(){
 		camera.enabled = true;
+	}
+
+	void disableCamera(){
+		camera.enabled = false;
 	}
 
 	// Any room that attempts to spawn on top of this spawner is destroyed
