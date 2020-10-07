@@ -26,6 +26,8 @@ public class RoomSpawner : MonoBehaviour {
 	}
 
 	void Spawn(){
+		GameObject room;
+
 		// If the current room spawner has not spawned a room yet and the room spawner is within the dungeon bounds
 		// Get the room spawners opening direction in order to decide from which rooms list to choose a random room from
 		if (spawned == false) {
@@ -34,25 +36,29 @@ public class RoomSpawner : MonoBehaviour {
 				case 1:
 					//spawn room with a door leading down
 					rand = Random.Range (0, room_templates.downRooms.Length);
-					Instantiate (room_templates.downRooms [rand], transform.position, Quaternion.identity);
+					room = Instantiate (room_templates.downRooms [rand], transform.position, Quaternion.identity);
+					room.transform.localScale = new Vector3 (2, 2, 0);
 					spawned = true;
 					break;
 				case 2:
 					//spawn room with a door leading up
 					rand = Random.Range (0, room_templates.upRooms.Length);
-					Instantiate (room_templates.upRooms [rand], transform.position, Quaternion.identity);
+					room = Instantiate (room_templates.upRooms [rand], transform.position, Quaternion.identity);
+					room.transform.localScale = new Vector3 (2, 2, 0);
 					spawned = true;
 					break;
 				case 3:
 					//spawn room with a door leading right
 					rand = Random.Range (0, room_templates.rightRooms.Length);
-					Instantiate (room_templates.rightRooms [rand], transform.position, Quaternion.identity);
+					room = Instantiate (room_templates.rightRooms [rand], transform.position, Quaternion.identity);
+					room.transform.localScale = new Vector3 (2, 2, 0);
 					spawned = true;
 					break;
 				case 4:
 					//spawn room with a door leading left
 					rand = Random.Range (0, room_templates.leftRooms.Length);
-					Instantiate (room_templates.leftRooms [rand], transform.position, Quaternion.identity);
+					room = Instantiate (room_templates.leftRooms [rand], transform.position, Quaternion.identity);
+					room.transform.localScale = new Vector3 (2, 2, 0);
 					spawned = true;
 					break;
 				}
@@ -60,7 +66,8 @@ public class RoomSpawner : MonoBehaviour {
 			// If the room spawner is outside of the dungeon bounds, then spawn a "closed room", which has 
 			// only one entrance/exit
 			else {
-				Instantiate (room_templates.closedRooms [openingDirection - 1], transform.position, Quaternion.identity);
+				room = Instantiate (room_templates.closedRooms [openingDirection - 1], transform.position, Quaternion.identity);
+				room.transform.localScale = new Vector3 (2, 2, 0);
 				spawned = true;
 			}
 		}

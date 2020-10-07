@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Prefabs/PlayerCombat.unity
+- path: Assets/Prefabs/RoomGen.unity
   isLoaded: 1
   isActive: 1
