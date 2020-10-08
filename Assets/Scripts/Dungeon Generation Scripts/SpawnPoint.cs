@@ -12,6 +12,7 @@ public class SpawnPoint : MonoBehaviour {
 		if (GameObject.FindGameObjectWithTag ("MainCamera") == null) {
 			Instantiate (camera, new Vector3(transform.position.x, transform.position.y, -10f), Quaternion.identity);
 			enableCamera ();
+			camera.orthographicSize = 9.5f;
 		}
 		else {
 			disableCamera ();
