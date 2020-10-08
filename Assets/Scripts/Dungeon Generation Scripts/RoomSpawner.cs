@@ -14,7 +14,7 @@ public class RoomSpawner : MonoBehaviour {
 	private EnemySpawnTemplate enemy_templates;
 	private int rand;
 	public bool spawned = false;
-	int gridSize = 130;
+	int gridSize = 35;
 
 	//public float waitTime_destroySpawners = 4f;
 
@@ -75,11 +75,8 @@ public class RoomSpawner : MonoBehaviour {
 		// If it the other spawn point has not been spawned then destroy it
 		if (other.CompareTag ("SpawnPoint")) {
 			if (other.GetComponent<RoomSpawner> ().spawned == true) {
-				//Destroy (gameObject);
-			} else {
-				//Destroy (other.gameObject);
+				Destroy (gameObject);
 			}
-			spawned = true;
 		}
 	}
 }
